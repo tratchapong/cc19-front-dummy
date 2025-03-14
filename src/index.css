@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.app-container {
+    @apply flex flex-col gap-3 max-w-5xl;
+}
+
+.mytitle {
+    @apply text-pink-500 text-3xl bg-lime-300 border;
+}
+
+.mybtn {
+    @apply btn btn-primary w-1/2 mx-auto;
+}
