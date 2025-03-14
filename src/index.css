@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 .app-container {
-    @apply flex flex-col gap-3 max-w-5xl;
+    @apply flex flex-col gap-3 max-w-5xl bg-info h-full mx-auto;
 }
 
 .mytitle {
