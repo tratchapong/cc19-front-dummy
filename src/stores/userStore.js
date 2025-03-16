@@ -10,6 +10,14 @@ const useUserStore = create( persist((set,get) => ({
 		set({token : rs.data.token, user: rs.data.user})
 		return rs.data
 	},
+	updateProfilePic : async (url) => {
+		const rs = await axios.patch('http://localhost:8889/profile-pic', 
+			{ profileImage: url},
+			{ headers : { Authorization : `Bearer ${get().token}`}}
+		)
+		console.log(rs)
+		set({user: {...get().user, profileImage: url} })
+	},
 	logout: () => set({token : '', user: null})
 }), {
 	name: 'state',

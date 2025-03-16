@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import getPublicId from "../utils/getPublicId";
 
-function UploadWidget({setSecureURL}) {
+function UploadWidget({updateProfilePic, oldProfilePic}) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
-  const [publicId, setPublicId] = useState('')
+  // const [publicId, setPublicId] = useState('')
   
 
   useEffect(() => {
@@ -14,13 +15,16 @@ function UploadWidget({setSecureURL}) {
       {
         cloudName: "tratchapong",
         uploadPreset: "cc19-upload",
+        cropping: true,
+        // overwrite: true //cannot use in unsigned_mode
       },
       (error, result) => {
         if(error) {return alert('upload error')}
         if (!error && result && result.event === "success") {
           console.log("Upload successful:", result.info);
-          setPublicId(result.info.public_id);
-          setSecureURL(result.info.secure_url);
+          // setPublicId(result.info.public_id);
+
+          updateProfilePic(result.info.secure_url);
         }
       }
     );
@@ -30,7 +34,7 @@ function UploadWidget({setSecureURL}) {
       className="btn btn-primary"
       onClick={() => widgetRef.current.open()}
     >
-      Upload
+      Change Profile Image
     </button>
   );
 }
