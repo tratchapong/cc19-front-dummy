@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import getPublicId from "../utils/getPublicId";
+import { useEffect, useRef } from "react";
 
-function UploadWidget({updateProfilePic, oldProfilePic}) {
+function UploadWidget({updateProfilePic}) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-
-  // const [publicId, setPublicId] = useState('')
-  
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -16,14 +12,11 @@ function UploadWidget({updateProfilePic, oldProfilePic}) {
         cloudName: "tratchapong",
         uploadPreset: "cc19-upload",
         cropping: true,
-        // overwrite: true //cannot use in unsigned_mode
       },
       (error, result) => {
         if(error) {return alert('upload error')}
         if (!error && result && result.event === "success") {
-          console.log("Upload successful:", result.info);
-          // setPublicId(result.info.public_id);
-
+          console.log("Upload successful:", result.info)
           updateProfilePic(result.info.secure_url);
         }
       }

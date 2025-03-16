@@ -15,7 +15,7 @@ function App() {
       <div className="text-2xl text-info">{user.username}</div>
       <button className="btn btn-info" onClick={logout}>Logout</button>
       <Avatar imgSrc={user?.profileImage} className='h-40 w-40' />
-      <UploadWidget updateProfilePic={updateProfilePic} oldProfilePic={user.profileImage}/>
+      <UploadWidget updateProfilePic={updateProfilePic} />
       <div className="divider"></div>
       <pre className="text-xl w-full">{JSON.stringify(user,null,2)}</pre>
     </div>
